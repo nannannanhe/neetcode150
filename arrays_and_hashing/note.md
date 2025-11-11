@@ -23,3 +23,29 @@
 
 參考 NeetCode 的 solution 後重寫。  
 思考方式為，encode 時，在每個 string 前加[長度][分隔符(可任意)]。在 decode 時，由於會先找出長度後，直接 slice 出該文字，因此即使文字中有使用分隔符，也不會影響 decode。
+
+## (07) Products of Array Except Self
+
+### Problem
+
+- neetcode: https://neetcode.io/problems/products-of-array-discluding-self?list=neetcode150
+- leetcode(238): https://leetcode.com/problems/product-of-array-except-self/description/
+
+### Time / Memory / Notes
+
+#### First Submission ([code](./07_products_of_array_except_self_01.py)) :
+
+- Language: Python
+- Memory: 52.3 MB (leetcode:23.04 MB, Beats 98.35%)
+- Runtime: 0.743 seconds (leetcode:18ms, Beats 90.08%)
+
+其實一開始直覺是用 Brute Force 真的一個一個乘，time 會是 O(n^2)，不過題目描述裡提到 Could you solve it in O(n)time without using the division operation?，才想到可以先開始就先把 total 的乘積算出來，再用除的。 關於 0 的個數的判斷沒有寫好，可以先判斷 zero_nums>1 時，直接 return [0]\*len(nums)的 List，就可以減少一個 if，增加可讀性。  
+btw 這個解法在 leetcode 上，Runtime 18ms, Beats 90.08%, Memory 23.04 MB, Beats 98.35%...好像也沒有真的那麼壞??
+
+#### Second Submission ([code](./07_products_of_array_except_self_02.py)) :
+
+- Language: Python
+- Memory: 52.2 MB (leetcode:23.18 MB, Beats 94.02%)
+- Runtime: 0.865 seconds (leetcode:24ms, Beats 55.08%)
+
+讀了 NeetCode 的解法後，自己重寫的不用除法的 O(n)解法。思考方式是，在對每個 nums[i]，計算他的之前的元素的乘積(prefix)和在他之後的元素的乘積(suffix)，prefix\*suffix 即為不含自己的所有元素的乘積。為了減少 memory 的用量，不另設 list 分別存 prefix 和 suffix，而是一邊計算 prefix/suffix，直接乘上去。(先由前往後，計算 prefix 並存入 output List，再由後往前，求出 suffix，並直接乘入 output List)
