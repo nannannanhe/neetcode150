@@ -65,7 +65,7 @@ btw 這個解法在 leetcode 上，Runtime 18ms, Beats 90.08%, Memory 23.04 MB, 
 - Memory: 52 MB (leetcode:17.96 MB, Beats 24.69%)
 - Runtime: 1.152 seconds (leetcode:7ms, Beats 36%)
 
-單純就行列、3\*3 的方法做檢查。檢查是否有數字重複的方法是利用 collections 的 Counter
+單純就行列、3\*3 的方塊(square)做檢查。檢查是否有數字重複的方法是利用 collections 的 Counter
 
 #### Second Submission ([code](./08_valid_sudoku_02.py)) :
 
@@ -73,4 +73,16 @@ btw 這個解法在 leetcode 上，Runtime 18ms, Beats 90.08%, Memory 23.04 MB, 
 - Memory: 52.3 MB (leetcode:18.08 MB, Beats 5.38%)
 - Runtime: 0.843 seconds (leetcode:6ms, Beats 40.9%)
 
-和第一個解法結構相同，單純就行列、3\*3 的方法做檢查，但檢查是否有數字重複的方法是利用 set。掃描每個 group 裡的數字加入 seen，再掃描下一個數字時檢查是否已經 seen 裡。
+和第一個解法結構相同，但檢查是否有數字重複的方法是利用 set。掃描每個 group 裡的數字加入 seen，再掃描下一個數字時檢查是否已經 seen 裡。
+
+#### 3rd Submission ([code](./08_valid_sudoku_03.py)) :
+
+- Language: Python
+- Memory: 52.1 MB (leetcode:17.74 MB, Beats 68.81%)
+- Runtime: 0.754 seconds (leetcode:4ms, Beats 56.7%)
+
+和第一個解法結構相同，但檢查是否有數字重複的方法是利用 bitmap。  
+1 << 4 =將 1 向左移動 4 格，0b000010000
+每個 bit 看作該數字是否出現過，ex: 0b000000001 = 1 出現過一次。
+於是，當該數字已經有出現過時，&會導致計算結果非 0，因此 False
+並當沒有重複時，利用 | 填入 bitmap 裡
