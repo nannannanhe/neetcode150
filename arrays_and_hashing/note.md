@@ -104,3 +104,13 @@ btw 這個解法在 leetcode 上，Runtime 18ms, Beats 90.08%, Memory 23.04 MB, 
 
 利用 minheap 每次 pop 出的值都會是最小值的特性，每 pop 出一個，就與前面一個 pop 出的值做比較，若後值為前值+1，連續 count+1  
 要小心序列中會有重複數字的情形，以及 input 為 empty list 的情況
+
+#### 2nd Submission ([code](./09_longest_consecutive_sequence_02.py)) :
+
+- Language: Python
+- Memory: 52 MB (leetcode:34.28 MB, Beats 51.95%)
+- Runtime: 0.786 seconds (leetcode:61ms, Beats 30.48%)
+
+參考說明後重寫。這次是利用 Set，先找出 streak 的頭，往後累加找出最長段  
+在沒有處理已讀過的數字時，在 LeetCode 的 80th testcase TLE，看起來是在 len(nums)大且開頭的數字重複時會 TLE，  
+因此加上 read 記錄已計算過的 streak 的頭的數字
