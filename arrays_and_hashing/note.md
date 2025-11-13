@@ -86,3 +86,21 @@ btw 這個解法在 leetcode 上，Runtime 18ms, Beats 90.08%, Memory 23.04 MB, 
 每個 bit 看作該數字是否出現過，ex: 0b000000001 = 1 出現過一次。  
 於是，當該數字已經有出現過時，&會導致計算結果非 0，因此 False  
 並當沒有重複時，利用 | 填入 bitmap 裡
+
+## (09) Longest Consecutive Sequence
+
+### Problem
+
+- neetcode: https://neetcode.io/problems/longest-consecutive-sequence?list=neetcode150
+- leetcode(128): https://leetcode.com/problems/longest-consecutive-sequence/description/
+
+### Time / Memory / Notes
+
+#### First Submission ([code](./09_longest_consecutive_sequence_01.py)) :
+
+- Language: Python
+- Memory: 52 MB (leetcode:28.14 MB, Beats 99.72%)
+- Runtime: 0.954 seconds (leetcode:163ms, Beats 6.06%)
+
+利用 minheap 每次 pop 出的值都會是最小值的特性，每 pop 出一個，就與前面一個 pop 出的值做比較，若後值為前值+1，連續 count+1  
+要小心序列中會有重複數字的情形，以及 input 為 empty list 的情況
