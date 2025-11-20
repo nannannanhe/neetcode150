@@ -75,3 +75,17 @@ two pointers 的解法
 
 - i: 從最前到最後，如果後面掃到的值前面已經掃過就跳過
 - j，k: 想法同上一題的 two pointer，合計值(target)為 0-sorted_nums[i]的值(因三個數相加為零)。但這次由於會有複數解，在找到合適的解後，j 往後一位，k 往前一位，繼續找可能的解。
+
+#### 2nd Submission ([code](./03_3sum_02.py)) :
+
+- Language: Python
+- Memory: 51.9 MB (leetcode:20.73 MB, Beats 37.27%)
+- Runtime: 0.932 seconds (leetcode:375ms, Beats 97.37%)
+
+在參考 NeetCode 的解答後，發現有可以改善的地方
+
+- 可以直接對 List 做 sort()，不用另開 List 來存
+- 當 nums[i]的值大於零時，在 non-decreasing 的情況不可能找到合為零的解，可直接 break
+- 原來的解法當 i 之後的 List 裡有重複值時，會同樣找出放進 output 裡，因此需要先轉為 tuple 放進 set 再轉回 List 來排除重複的解。可直接在原來的判斷裡加上 while，使 j 位移到不重複的值來解決原先會有重複解的問題
+
+改善上述三點後，NeetCode 和 LeetCode 上在 Memory 用量上都有改善。時間上則是只有 LeetCode 大幅改善，推測可能是有對應到部分測資?
