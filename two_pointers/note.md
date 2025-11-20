@@ -54,3 +54,24 @@ two pointers 的解法
 利用 two-pointers，一個在最前，一個在最後，  
 當相加的值大於 target，即表示目前的值太多，令值最大的右側往左移一格，  
 而當相加的值小於 target，表示目前的值太小，令值最小的左側往右移一格，以求得正確的 pair。O(n)
+
+## (03) 3Sum
+
+### Problem
+
+- neetcode: https://neetcode.io/problems/three-integer-sum/question
+- leetcode(15): https://leetcode.com/problems/3sum/description/
+
+### Time / Memory / Notes
+
+#### First Submission ([code](./03_3sum_01.py)) :
+
+- Language: Python
+- Memory: 52.3 MB (leetcode:23.45 MB, Beats 5.05%)
+- Runtime: 0.795 seconds (leetcode:483ms, Beats 79.33%)
+
+我的解法是上一題 Two Integer Sum II 的延伸題的感覺。  
+由於 output 不需要原來的 index，直接先對原來的 nums 排序，在 non-decreasing 的狀況下，分三個點:i, j, k。
+
+- i: 從最前到最後，如果後面掃到的值前面已經掃過就跳過
+- j，k: 想法同上一題的 two pointer，合計值(target)為 0-sorted_nums[i]的值(因三個數相加為零)。但這次由於會有複數解，在找到合適的解後，j 往後一位，k 往前一位，繼續找可能的解。
