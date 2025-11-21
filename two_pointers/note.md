@@ -105,4 +105,14 @@ two pointers 的解法
 - Memory: 52.1 MB (leetcode:TLE on 55th testcase)
 - Runtime: 0.828 seconds (leetcode:TLE on 55th testcase)
 
-一時想不到聰明的解法，直覺用 BruteForce 解。第一個點 i 從 heights[0~n-1]，第二個點 j 從 heights[i+1~n]，去算 min(heights[i], heights[j]) \* (j-i)的乘積(即 container 的容量)，找最大值。在其中之一的值為 0 時跳過以減少一點計算量。NeetCode 過了但 LeetCode TLE
+一時想不到聰明的解法，直覺用 BruteForce 解。第一個點 i 從 heights[0~n-1]，第二個點 j 從 heights[i+1~n]，去算 min(heights[i], heights[j]) \* (j-i)的乘積(即 container 的容量)，找最大值。在其中之一的值為 0 時跳過以減少一點計算量。NeetCode 過了但 LeetCode TLE。O(n^2)
+
+#### 2nd Submission ([code](./04_container_with_most_water_02.py)) :
+
+- Language: Python
+- Memory: 52 MB (leetcode: 28.62 MB, beats 23.91%)
+- Runtime: 0.894 seconds (leetcode: 111 ms, beats 21.07%)
+
+看了 NeetCode 的解說，用 2 pointers 重寫。  
+想法是，在兩頭定義 l 和 r 兩個 pointer，此時的寬是最大的，如果剛好兩頭的 height 是高的時，就能得到最大的容積。而在找下一個可能的更大的容積時，寬由於 pointer 的移動，一定會變小一格；在高度方面，將 l 和 r 中較短的那個 pointer 往另一端移動，若下一格的高較目前高，則可能獲得比前一格取得的更大的容積。一直掃到兩點交錯。O(n)  
+因為這題歸類在 two pointers，其實一開始是有想能不能用 two pointer 來做的，但沒想到上面的解法...就算想在兩頭定義 l 和 r，也想不到這樣的移動可以得到最大解。可能就是需要經驗吧
