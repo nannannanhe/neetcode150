@@ -89,3 +89,20 @@ two pointers 的解法
 - 原來的解法當 i 之後的 List 裡有重複值時，會同樣找出放進 output 裡，因此需要先轉為 tuple 放進 set 再轉回 List 來排除重複的解。可直接在原來的判斷裡加上 while，使 j 位移到不重複的值來解決原先會有重複解的問題
 
 改善上述三點後，NeetCode 和 LeetCode 上在 Memory 用量上都有改善。時間上則是只有 LeetCode 大幅改善，推測可能是有對應到部分測資?
+
+## (04) Container With Most Water
+
+### Problem
+
+- neetcode: https://neetcode.io/problems/max-water-container/question
+- leetcode(11): https://leetcode.com/problems/container-with-most-water/description/
+
+### Time / Memory / Notes
+
+#### First Submission ([code](./04_container_with_most_water_01.py)) :
+
+- Language: Python
+- Memory: 52.1 MB (leetcode:TLE on 55th testcase)
+- Runtime: 0.828 seconds (leetcode:TLE on 55th testcase)
+
+一時想不到聰明的解法，直覺用 BruteForce 解。第一個點 i 從 heights[0~n-1]，第二個點 j 從 heights[i+1~n]，去算 min(heights[i], heights[j]) \* (j-i)的乘積(即 container 的容量)，找最大值。在其中之一的值為 0 時跳過以減少一點計算量。NeetCode 過了但 LeetCode TLE
