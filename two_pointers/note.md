@@ -116,3 +116,31 @@ two pointers 的解法
 看了 NeetCode 的解說，用 2 pointers 重寫。  
 想法是，在兩頭定義 l 和 r 兩個 pointer，此時的寬是最大的，如果剛好兩頭的 height 是高的時，就能得到最大的容積。而在找下一個可能的更大的容積時，寬由於 pointer 的移動，一定會變小一格；在高度方面，將 l 和 r 中較短的那個 pointer 往另一端移動，若下一格的高較目前高，則可能獲得比前一格取得的更大的容積。一直掃到兩點交錯。O(n)  
 因為這題歸類在 two pointers，其實一開始是有想能不能用 two pointer 來做的，但沒想到上面的解法...就算想在兩頭定義 l 和 r，也想不到這樣的移動可以得到最大解。可能就是需要經驗吧
+
+## (05) Trapping Rain Water
+
+### Problem
+
+- neetcode: https://neetcode.io/problems/trapping-rain-water/question
+- leetcode(42): https://leetcode.com/problems/trapping-rain-water/description/
+
+### Time / Memory / Notes
+
+#### First Submission ([code](./05_trapping_rain_water_01.py)) :
+
+- Language: Python
+- Memory: 52.3 MB (leetcode: 19.39 MB, beats 38.63%)
+- Runtime: 0.84 seconds (leetcode: 31 ms, beats 19.83%)
+
+看了 NeetCode 在 description 裡給的 Hint 才解出來。  
+想法是對每個點求他的積水量，而為了求積水量，先對每個點找出他向左(prefix)、向右(suffix)分別的最大值，該點的積水量為 min(prefix[i], suffix[i])-height[i]，當值小於零則表示不會積水。  
+...怎麼可能在 30 分鐘裡想到??至少我是想不到 orz
+
+#### 2nd Submission ([code](./05_trapping_rain_water_02.py)) :
+
+- Language: Python
+- Memory: 52.2 MB (leetcode: 19.27 MB, beats 69.23%)
+- Runtime: 0.82 seconds (leetcode: 17 ms, beats 43.61%)
+
+聽了 NeetCode 的解說，用 two pointers 重寫。  
+想法是，由於在求單點的積水時，只需要知道 min(prefix, suffix)，所以，只需要在兩端點定義 l, r，並以其值為 max_l, max_r，從較小的那端向另一端計算過去即可。各點的積水量仍然是當下的 min(max_l, max_r)-height[當下的點]。
