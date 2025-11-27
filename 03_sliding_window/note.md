@@ -46,3 +46,22 @@ time O(n), memory O(1)，但在效能上好像沒有明顯變化
 time O(n), memory O(1)。
 想法是將左點設定為 buy，右點設定為 sell，右點一直往右移一格，計算 profit 並更新最大值  
 當右點的值<左點時，表示找到了更佳的買入點，將左點的 index 更新為更佳的買入點
+
+## (02) Longest Substring Without Repeating Characters
+
+### Problem
+
+- neetcode: https://neetcode.io/problems/longest-substring-without-duplicates/question
+- leetcode(3): https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+
+### Time / Memory / Notes
+
+#### 1st Submission ([code](./02_longest_substring_without_repeating_characters_01.py)) :
+
+- Language: Python
+- Memory: 52.3 MB (leetcode: 17.82 MB, beats 52.41%)
+- Runtime: 0.85 seconds (leetcode: 548 ms, beats 5.00%)
+
+利用 sliding window 的概念，並利用 set 來記錄已經過的未重複元素。  
+由於左點仍然需要一格一格向右，time O(n^2)? memory O(1)  
+由左點為起點，右點向右移動，當右點的元素不重複，存入 word_set，而當右點的元素已在 word_set 裡時，重置 word_set，將左點向右一格，右點重置為左點加一，重新查找
