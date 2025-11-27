@@ -62,6 +62,28 @@ time O(n), memory O(1)。
 - Memory: 52.3 MB (leetcode: 17.82 MB, beats 52.41%)
 - Runtime: 0.85 seconds (leetcode: 548 ms, beats 5.00%)
 
-讀了 NeetCode 的 solution 發現我的寫法其實是 brute force...
+以為設兩個點就是 sliding window，讀了 NeetCode 的 solution 才發現我的寫法其實是 brute force...
 time O(n\*m), memory O(m), m 為 unique 的元素個數
 由左點為起點，右點向右移動，當右點的元素不重複，存入 word_set，而當右點的元素已在 word_set 裡時，重置 word_set，將左點向右一格，右點重置為左點加一，重新查找
+
+#### 2nd Submission ([code](./02_longest_substring_without_repeating_characters_02.py)) :
+
+- Language: Python
+- Memory: 52.3 MB (leetcode: 18.08 MB, beats 11.97%)
+- Runtime: 0.806 seconds (leetcode: 23 ms, beats 30.72%)
+
+真正的 sliding window，time O(n), memory O(m)  
+當右點遇到已在 set 裡的元素時，重複 remove 掉左點的元素，將左點向右一格，重複直至右點不在 set 裡，  
+之後將右點元素加入 set，更新長度，並持續向右一格
+
+#### 3rd Submission ([code](./02_longest_substring_without_repeating_characters_03.py)) :
+
+- Language: Python
+- Memory: 52.4 MB (leetcode: 17.69 MB, beats 96.66%)
+- Runtime: 0.775 seconds (leetcode: 23 ms, beats 30.72%)
+
+optimal 的寫法，  
+不用 while 去調整左點的位置，而是利用 dict 記錄該元素最後出現的 index，  
+在右點出現重複的元素時，調整左點至 max(左點目前的位置，該元素最後出現的位置+1)
+計算長度時不使用 dict 的元素量，而是用目前的左點和右點來計算
+調整左點那步有點 tricky，我本來想說把左點調到該元素最後出現的位置就好了吧，但在 abba 時會出錯(因為左點會跑到更前的地方，導致中間的調整被蓋過，會有重複元素)
