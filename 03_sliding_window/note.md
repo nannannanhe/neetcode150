@@ -104,3 +104,27 @@ optimal 的寫法，
 - Runtime: 0.807 seconds (leetcode: LTE on 36th testcase)
 
 看了解說才寫出來，但可能因為每個 iteration 都用了 Counter 來算出現次數最多的字元，leetcode 會 LTE。
+
+#### 2nd Submission ([code](./03_longest_repeating_character_replacement_02.py)) :
+
+- Language: Python
+- Memory: 52.1 MB (leetcode: 18.19 MB, beats 23.14%)
+- Runtime: 0.842 seconds (leetcode: 322 ms, beats 8.23%)
+
+s[0:k+1]作為初始的 substr，利用 Counter 計算字元的出現次數，之後在 sliding window 移動時直接對 counter 作加減，並更新 max_count。
+
+#### 3rd Submission ([code](./03_longest_repeating_character_replacement_03.py)) :
+
+- Language: Python
+- Memory: 52 MB (leetcode: 18.23 MB, beats 23.14%)
+- Runtime: 0.813 seconds (leetcode: 191 ms, beats 19.56%)
+
+發現可以直接用 max(c.values())找 max_count，02 的 refactor 版。
+
+#### 4th Submission ([code](./03_longest_repeating_character_replacement_04.py)) :
+
+- Language: Python
+- Memory: 52.6 MB (leetcode: 18.06 MB, beats 48.86%)
+- Runtime: 0.772 seconds (leetcode: 158 ms, beats 35.23%)
+
+直接從 s[0:0]開始，每個移動更新 count dictionay 計算字元的次數，不使用 Counter。
