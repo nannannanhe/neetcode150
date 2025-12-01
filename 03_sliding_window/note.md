@@ -87,3 +87,20 @@ optimal 的寫法，
 在右點出現重複的元素時，調整左點至 max(左點目前的位置，該元素最後出現的位置+1)
 計算長度時不使用 dict 的元素量，而是用目前的左點和右點來計算
 調整左點那步有點 tricky，我本來想說把左點調到該元素最後出現的位置就好了吧，但在 abba 時會出錯(因為左點會跑到更前的地方，導致中間的調整被蓋過，會有重複元素)
+
+## (03) Longest Repeating Character Replacement
+
+### Problem
+
+- neetcode: https://neetcode.io/problems/longest-repeating-substring-with-replacement/question
+- leetcode(424): https://leetcode.com/problems/longest-repeating-character-replacement/description/
+
+### Time / Memory / Notes
+
+#### 1st Submission ([code](./03_longest_repeating_character_replacement_01.py)) :
+
+- Language: Python
+- Memory: 53 MB (leetcode: LTE on 36th testcase)
+- Runtime: 0.807 seconds (leetcode: LTE on 36th testcase)
+
+看了解說才寫出來，但可能因為每個 iteration 都用了 Counter 來算出現次數最多的字元，leetcode 會 LTE。
