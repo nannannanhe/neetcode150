@@ -7,7 +7,7 @@
 
 ### Time / Memory / Notes
 
-#### before Submission ([code](./05_top_k_frequest_elements_00.py)) :
+#### before Submission ([code](./05_top_k_frequent_elements_00.py)) :
 
 - Language: Python
 - Memory: 8 MB (Beats 78.82%)
