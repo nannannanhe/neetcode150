@@ -1,3 +1,67 @@
+## (05) Top K Frequent Elements
+
+### Problem
+
+- neetcode: https://neetcode.io/problems/top-k-elements-in-list/question
+- leetcode(271): https://leetcode.com/problems/top-k-frequent-elements/description/
+
+### Time / Memory / Notes
+
+#### before Submission ([code](./05_top_k_frequest_elements_00.py)) :
+
+- Language: Python
+- Memory: 8 MB (Beats 78.82%)
+- Runtime: 28ms (Beats 88.79%)
+
+半年前寫的版本，似乎為了最後可以直接用list[-k:0]，sort完後先轉成dict。
+
+#### First Submission ([code](./05_top_k_frequent_elements_01.py)) :
+
+- Language: Python
+- Memory: 8.0 MB (Beats 78.82%)
+- Runtime: 29ms (Beats 88.79%)
+
+快半年沒寫python，邊查語法邊寫。  
+還記得python有東西可以用來減少最開始設定初始值的部分。(defaultdict)  
+覺得最後取出前k個的地方還可以再改善?
+
+#### Second Submission ([code](./05_top_k_frequent_elements_02.py)) :
+
+- Language: Python
+- Memory: 8.0 MB (Beats 78.82%)
+- Runtime: 30ms (Beats 88.79%)
+
+以01為底，最後取出前k個的地方改寫成比較Pythonic的寫法
+
+#### Third Submission ([code](./05_top_k_frequent_elements_03.py)) :
+
+- Language: Python
+- Memory: 8.0 MB (Beats 78.82%)
+- Runtime: 28ms (Beats 88.79%)
+
+利用Counter和most_common(k)改寫
+
+#### 寫法和效能比較
+
+02(自行處理加總計算，並利用sorted作排序)和03(交給Counter並利用most_common(k))的效能在neetcode上沒有明顯差距，但在leetcode上差距(以Beats%來看)相當大
+
+- Memory: 02/22.60 MB (Beats 95.01%) vs 03/22.98 MB (Beats 42.47%)
+- Runtime:02/3ms (Beats 89.10%) vs 03/7ms (Beats 51.52%)
+
+和Gemini討論後，結果如下：
+
+- 效能上的差異似乎主要和Python的底層實作和Leetcode資料量有關。以下引用Gemini的回答
+
+```
+當使用sorted(hash_map.items()) 時，Python 使用的是內建的 Timsort 演算法（底層是用 C 語言寫的，速度極快）。而 Counter.most_common(k) 在底層並不是每次都無腦直接排序。為了追求演算法上的最佳化，Python 官方對它做了條件分流：
+
+- 當 $k$ 很小的時候： 它底層會調用 heapq.nlargest(k, ...)。這是一個基於 堆積 (Heap) 的演算法。
+- 當 $k$ 很大的時候（接近總體元素量）： 它才會切換回全排序 sorted()。
+```
+
+- 在實際開發中，可讀性與維護性通常會大於效能上的錙銖必較 -> 優先使用 Counter
+- 當遇到效能上的瓶頸時則可以考慮改寫成sorted的版本
+
 ## (06) Encode and Decode Strings
 
 ### Problem
