@@ -23,4 +23,4 @@
 - Runtime: 26 ms (leetcode: 0ms Beats 100%)
 
 看了NeetCode的解析，其實想法和我第一次寫時是一樣的，但我沒有注意到題目裡定義input的字串s只會有括號組成，不會有其他字元，因此不需要判斷會有其他字元時的情況，
-以及想檢查是否in dict.keys()時，只要寫in dict就好，重寫成比較phthonic的版本。
+以及想檢查是否in dict.keys()時，只要寫in dict就好，重寫成比較pythonic的版本。
