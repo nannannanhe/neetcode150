@@ -146,3 +146,13 @@ s[0:k+1]作為初始的 substr，利用 Counter 計算字元的出現次數，�
 
 直觀對s2由前往後掃，並另開一個list記錄s1的字元，有對上就remove掉。
 時間上會是mn (m=len(s2), n=len(s1))。neetcode過了測資但leetcode LTE。
+
+#### 2nd Submission ([code](./04_permutation_in_string_02.py)) :
+
+- Language: Python
+- Memory: 7.7 MB (leetcode: 19.44 MB beats 18.25%)
+- Runtime: 48 ms (leetcode: 3089 ms beats 7.56%)
+
+先檢查s1比s2長的情況，直接return False。
+再由前往後掃s2，對每一個字元往後取出長度為len(s1)的substr，
+檢查sort後的s1是否與sort後的substr相同，若相同return true
