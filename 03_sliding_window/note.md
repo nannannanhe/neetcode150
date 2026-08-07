@@ -156,3 +156,14 @@ s[0:k+1]作為初始的 substr，利用 Counter 計算字元的出現次數，�
 先檢查s1比s2長的情況，直接return False。
 再由前往後掃s2，對每一個字元往後取出長度為len(s1)的substr，
 檢查sort後的s1是否與sort後的substr相同，若相同return true
+
+#### 3rd Submission ([code](./04_permutation_in_string_03.py)) :
+
+- Language: Python
+- Memory: 7.7 MB (leetcode: 19.36 MB beats 53.60%)
+- Runtime: 29 ms (leetcode: 14 ms beats 83.00%)
+
+參考neetcode的解說後寫的sliding window解法。
+利用ord(char) - ord('a')的方式，使得可以直接用list/array來計算字元出現次數，且可以使用[0]\*26來initial計數的table。
+之後用sliding window對右端和左端更新CountTable和match，
+當match==26時即表示substr/window與s1的字元數相同，return True
