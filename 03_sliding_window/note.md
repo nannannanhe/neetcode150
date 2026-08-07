@@ -128,3 +128,21 @@ s[0:k+1]作為初始的 substr，利用 Counter 計算字元的出現次數，�
 - Runtime: 0.772 seconds (leetcode: 158 ms, beats 35.23%)
 
 直接從 s[0:0]開始，每個移動更新 count dictionay 計算字元的次數，不使用 Counter。
+
+## (04) Permutation in String
+
+### Problem
+
+- neetcode: https://neetcode.io/problems/permutation-string/question
+- leetcode(567): https://leetcode.com/problems/permutation-in-string/description/
+
+### Time / Memory / Notes
+
+#### 1st Submission ([code](./04_permutation_in_string_01.py)) :
+
+- Language: Python
+- Memory: 7.7 MB (leetcode: LTE on 82nd testcase)
+- Runtime: 96 ms (leetcode: LTE on 82nd testcase)
+
+直觀對s2由前往後掃，並另開一個list記錄s1的字元，有對上就remove掉。
+時間上會是mn (m=len(s2), n=len(s1))。neetcode過了測資但leetcode LTE。
